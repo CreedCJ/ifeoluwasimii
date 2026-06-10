@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<style>
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.glass{
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.3);
+}
+
+.heart{
+    position:fixed;
+    bottom:-20px;
+    animation:floatUp linear forwards;
+    pointer-events:none;
+    z-index:0;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.hidden-section{
+    display:none;
+}
+
+.photo-card img{
+    height:220px;
+    width:100%;
+    object-fit:cover;
+}
+
+.typewriter{
+    border-right:3px solid white;
+    white-space:pre-wrap;
+    overflow:hidden;
+}
+
+.music-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:100;
+}
+</style>
+</head>
+
+<body class="bg-gradient-to-br from-pink-400 via-rose-300 to-fuchsia-400 min-h-screen text-white">
+
+<!-- Floating Hearts Container -->
+<div id="hearts"></div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+    <!-- Replace with your file -->
+    <source src="music/bleeding-love.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn"
+class="music-btn bg-pink-600 rounded-full w-14 h-14 shadow-xl text-2xl">
+🎵
+</button>
+
+<!-- LANDING -->
+<section id="landing" class="min-h-screen flex items-center justify-center px-6">
+
+<div class="glass rounded-3xl p-8 text-center max-w-md">
+
+<h1 class="text-5xl font-bold mb-4">
+🎂
+</h1>
+
+<h2 class="text-3xl font-bold mb-4">
+Happy Birthday
+<br>
+Princess 👑
+</h2>
+
+<p class="mb-8">
+Today isn't just another day.
+It's the day someone incredibly special was born.
+And because it's your day, I've prepared a little adventure for you ❤️
+</p>
+
+<button onclick="showSection('quiz1')"
+class="bg-pink-600 px-6 py-3 rounded-full font-bold hover:scale-105 transition">
+Start Your Adventure ✨
+</button>
+
+</div>
+
+</section>
+
+<!-- QUIZ 1 -->
+<section id="quiz1" class="hidden-section min-h-screen flex items-center justify-center px-5">
+
+<div class="glass p-8 rounded-3xl max-w-md w-full text-center">
+
+<h2 class="text-2xl font-bold mb-6">Question 1 ❤️</h2>
+
+<p class="mb-6">
+What nickname do I call you the most?
+</p>
+
+<div class="space-y-3">
+<button onclick="wrongAnswer()" class="quiz-btn w-full bg-white/20 p-3 rounded-xl">Angel</button>
+<button onclick="correctAnswer('quiz2')" class="quiz-btn w-full bg-white/20 p-3 rounded-xl">Princess</button>
+<button onclick="wrongAnswer()" class="quiz-btn w-full bg-white/20 p-3 rounded-xl">Sunshine</button>
+<button onclick="wrongAnswer()" class="quiz-btn w-full bg-white/20 p-3 rounded-xl">Sweetheart</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- QUIZ 2 -->
+<section id="quiz2" class="hidden-section min-h-screen flex items-center justify-center px-5">
+
+<div class="glass p-8 rounded-3xl max-w-md w-full text-center">
+
+<h2 class="text-2xl font-bold mb-6">Question 2 ❤️</h2>
+
+<p class="mb-6">
+What's my favorite thing about you?
+</p>
+
+<div class="space-y-3">
+<button onclick="wrongAnswer()" class="w-full bg-white/20 p-3 rounded-xl">Your smile</button>
+<button onclick="wrongAnswer()" class="w-full bg-white/20 p-3 rounded-xl">Your eyes</button>
+<button onclick="correctAnswer('quiz3')" class="w-full bg-white/20 p-3 rounded-xl">Everything ❤️</button>
+<button onclick="wrongAnswer()" class="w-full bg-white/20 p-3 rounded-xl">Your laugh</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- QUIZ 3 -->
+<section id="quiz3" class="hidden-section min-h-screen flex items-center justify-center px-5">
+
+<div class="glass p-8 rounded-3xl max-w-md w-full text-center">
+
+<h2 class="text-2xl font-bold mb-6">Question 3 ❤️</h2>
+
+<p class="mb-6">
+Who misses who more?
+</p>
+
+<div class="space-y-3">
+<button onclick="wrongAnswer()" class="w-full bg-white/20 p-3 rounded-xl">You</button>
+<button onclick="correctAnswer('quiz4')" class="w-full bg-white/20 p-3 rounded-xl">Me 😂</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- QUIZ 4 -->
+<section id="quiz4" class="hidden-section min-h-screen flex items-center justify-center px-5">
+
+<div class="glass p-8 rounded-3xl max-w-md w-full text-center">
+
+<h2 class="text-2xl font-bold mb-6">Question 4 ❤️</h2>
+
+<p class="mb-6">
+Who is the cutest person ever?
+</p>
+
+<div class="space-y-3">
+<button onclick="correctAnswer('quiz5')" class="w-full bg-white/20 p-3 rounded-xl">You 🥰</button>
+<button onclick="wrongAnswer()" class="w-full bg-white/20 p-3 rounded-xl">Nobody</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- QUIZ 5 -->
+<section id="quiz5" class="hidden-section min-h-screen flex items-center justify-center px-5">
+
+<div class="glass p-8 rounded-3xl max-w-md w-full text-center">
+
+<h2 class="text-2xl font-bold mb-6">Final Question ❤️</h2>
+
+<p class="mb-6">
+Are you ready for your surprise?
+</p>
+
+<div class="space-y-3">
+<button onclick="correctAnswer('gallery')" class="w-full bg-pink-600 p-3 rounded-xl">
+YESSSS 🎉
+</button>
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="hidden-section py-16 px-5">
+
+<h2 class="text-center text-4xl font-bold mb-10">
+📸 Our Memories
+</h2>
+
+<div class="grid gap-6 max-w-md mx-auto">
+
+<!-- Replace these images -->
+
+<div class="photo-card glass rounded-3xl overflow-hidden">
+<img src="images/photo1.jpg">
+</div>
+
+<div class="photo-card glass rounded-3xl overflow-hidden">
+<img src="images/photo2.jpg">
+</div>
+
+<div class="photo-card glass rounded-3xl overflow-hidden">
+<img src="images/photo3.jpg">
+</div>
+
+<div class="photo-card glass rounded-3xl overflow-hidden">
+<img src="images/photo4.jpg">
+</div>
+
+<div class="photo-card glass rounded-3xl overflow-hidden">
+<img src="images/photo5.jpg">
+</div>
+
+<div class="photo-card glass rounded-3xl overflow-hidden">
+<img src="images/photo6.jpg">
+</div>
+
+<div class="photo-card glass rounded-3xl overflow-hidden">
+<img src="images/photo7.jpg">
+</div>
+
+<div class="photo-card glass rounded-3xl overflow-hidden">
+<img src="images/photo8.jpg">
+</div>
+
+</div>
+
+<div class="text-center mt-10">
+<button onclick="showSection('openWhen')"
+class="bg-pink-600 px-6 py-3 rounded-full">
+Continue ❤️
+</button>
+</div>
+
+</section>
+
+<!-- OPEN WHEN -->
+<section id="openWhen" class="hidden-section py-20 px-5">
+
+<h2 class="text-center text-4xl font-bold mb-10">
+💌 Open When...
+</h2>
+
+<div class="max-w-md mx-auto space-y-5">
+
+<div class="glass p-5 rounded-3xl cursor-pointer" onclick="toggleCard(this)">
+😊 Open when you're happy
+<p class="hidden mt-4 text-sm">
+Keep smiling beautiful. Your happiness makes the world brighter ❤️
+</p>
+</div>
+
+<div class="glass p-5 rounded-3xl cursor-pointer" onclick="toggleCard(this)">
+🥺 Open when you're sad
+<p class="hidden mt-4 text-sm">
+Bad days come and go. You're stronger than you know and never alone ❤️
+</p>
+</div>
+
+<div class="glass p-5 rounded-3xl cursor-pointer" onclick="toggleCard(this)">
+🥰 Open when you miss me
+<p class="hidden mt-4 text-sm">
+Close your eyes. Imagine me hugging you tightly right now.
+</p>
+</div>
+
+<div class="glass p-5 rounded-3xl cursor-pointer" onclick="toggleCard(this)">
+😤 Open when you're angry
+<p class="hidden mt-4 text-sm">
+Take a deep breath. Then remember how adorable you are when you're mad 😂❤️
+</p>
+</div>
+
+<div class="glass p-5 rounded-3xl cursor-pointer" onclick="toggleCard(this)">
+🎂 Open on your birthday
+<p class="hidden mt-4 text-sm">
+Today is all about you. Celebrate yourself because you deserve every bit of love.
+</p>
+</div>
+
+</div>
+
+<div class="text-center mt-10">
+<button onclick="showSection('finalPage')"
+class="bg-pink-600 px-6 py-3 rounded-full">
+Unlock Final Surprise 🎁
+</button>
+</div>
+
+</section>
+
+<!-- FINAL PAGE -->
+<section id="finalPage"
+class="hidden-section min-h-screen flex items-center justify-center px-5">
+
+<div class="glass p-8 rounded-3xl max-w-md text-center">
+
+<h2 class="text-4xl mb-6">
+🎉
+</h2>
+
+<h2 class="text-3xl font-bold mb-8">
+Happy Birthday My Love ❤️
+</h2>
+
+<p id="typewriter" class="leading-8"></p>
+
+</div>
+
+</section>
+
+<script>
+
+function showSection(id){
+
+document.querySelectorAll("section").forEach(sec=>{
+sec.style.display="none";
+});
+
+document.getElementById(id).style.display="flex";
+
+if(id==="gallery" || id==="openWhen"){
+document.getElementById(id).style.display="block";
+}
+
+if(id==="finalPage"){
+launchConfetti();
+typeWriter();
+}
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+}
+
+function correctAnswer(next){
+showSection(next);
+}
+
+function wrongAnswer(){
+alert("Oops 😂 Try again Princess ❤️");
+}
+
+function toggleCard(card){
+const text=card.querySelector("p");
+text.classList.toggle("hidden");
+}
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.classList.add("heart");
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+heart.style.animationDuration=(Math.random()*4+5)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},9000);
+}
+
+setInterval(createHeart,700);
+
+function launchConfetti(){
+
+confetti({
+particleCount:250,
+spread:120,
+origin:{y:0.6}
+});
+}
+
+const message =
+`Every day with you feels like a gift,
+but today the gift is you.
+
+Thank you for every smile,
+every laugh,
+every memory,
+and every beautiful moment we've shared.
+
+You deserve all the happiness,
+all the love,
+and all the wonderful things life has to offer.
+
+Happy Birthday beautiful ❤️
+
+(Replace this message with your own heartfelt letter.)`;
+
+function typeWriter(){
+
+let i=0;
+
+const target=document.getElementById("typewriter");
+
+target.innerHTML="";
+
+let timer=setInterval(()=>{
+
+if(i<message.length){
+target.innerHTML+=message.charAt(i);
+i++;
+}else{
+clearInterval(timer);
+}
+
+},40);
+}
+
+const music=document.getElementById("bgMusic");
+
+document.getElementById("musicBtn").addEventListener("click",()=>{
+
+if(music.paused){
+music.play();
+}else{
+music.pause();
+}
+
+});
+
+</script>
+
+</body>
+</html>
