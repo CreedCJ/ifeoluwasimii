@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday ❤️</title>
+<title>Ifeoluwasimigit push -u origin master ❤️</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
@@ -67,7 +67,9 @@ body{
 </style>
 </head>
 
-<body class="bg-gradient-to-br from-pink-400 via-rose-300 to-fuchsia-400 min-h-screen text-white">
+<body class="bg-gradient-to-b from-black via-zinc-950 to-black min-h-screen text-white">
+
+<div id="stars"></div>
 
 <!-- Floating Hearts Container -->
 <div id="hearts"></div>
@@ -349,6 +351,28 @@ Happy Birthday My Love ❤️
 
 <script>
 
+setInterval(() => {
+    const star = document.createElement("div");
+
+    star.innerHTML = "✦";
+
+    star.style.position = "fixed";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.color = "white";
+    star.style.fontSize = "12px";
+    star.style.opacity = "0.8";
+    star.style.zIndex = "1";
+    star.style.pointerEvents = "none";
+
+    document.getElementById("stars").appendChild(star);
+
+    setTimeout(() => {
+        star.remove();
+    }, 4000);
+
+}, 300);
+
 function showSection(id){
 
 document.querySelectorAll("section").forEach(sec=>{
@@ -463,6 +487,7 @@ music.pause();
 }
 
 });
+
 
 </script>
 
